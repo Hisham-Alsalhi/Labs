@@ -12,9 +12,9 @@ nodes:
     configuration: |-
       Building configuration...
 
-      Current configuration : 3096 bytes
+      Current configuration : 3127 bytes
       !
-      ! Last configuration change at 21:48:25 UTC Sun Mar 17 2024
+      ! Last configuration change at 22:07:03 UTC Sun Mar 17 2024
       !
       version 15.9
       service timestamps debug datetime msec
@@ -89,8 +89,7 @@ nodes:
        media-type rj45
       !
       interface GigabitEthernet0/2
-       no ip address
-       shutdown
+       ip address 20.2.3.3 255.255.255.0
        duplex auto
        speed auto
        media-type rj45
@@ -103,6 +102,7 @@ nodes:
        media-type rj45
       !
       router ospf 1
+       mpls ldp autoconfig
        network 0.0.0.0 255.255.255.255 area 0
       !
       ip forward-protocol nd
@@ -190,9 +190,9 @@ nodes:
     configuration: |-
       Building configuration...
 
-      Current configuration : 3117 bytes
+      Current configuration : 3138 bytes
       !
-      ! Last configuration change at 21:48:34 UTC Sun Mar 17 2024
+      ! Last configuration change at 22:07:13 UTC Sun Mar 17 2024
       !
       version 15.9
       service timestamps debug datetime msec
@@ -279,6 +279,7 @@ nodes:
        media-type rj45
       !
       router ospf 1
+       mpls ldp autoconfig
        network 0.0.0.0 255.255.255.255 area 0
       !
       ip forward-protocol nd
@@ -366,9 +367,9 @@ nodes:
     configuration: |-
       Building configuration...
 
-      Current configuration : 3332 bytes
+      Current configuration : 3353 bytes
       !
-      ! Last configuration change at 21:48:13 UTC Sun Mar 17 2024
+      ! Last configuration change at 22:06:54 UTC Sun Mar 17 2024
       !
       version 15.9
       service timestamps debug datetime msec
@@ -466,6 +467,7 @@ nodes:
        media-type rj45
       !
       router ospf 1
+       mpls ldp autoconfig
        network 0.0.0.0 255.255.255.255 area 0
       !
       ip forward-protocol nd
@@ -557,9 +559,9 @@ nodes:
     configuration: |-
       Building configuration...
 
-      Current configuration : 3215 bytes
+      Current configuration : 3236 bytes
       !
-      ! Last configuration change at 21:48:26 UTC Sun Mar 17 2024
+      ! Last configuration change at 22:07:06 UTC Sun Mar 17 2024
       !
       version 15.9
       service timestamps debug datetime msec
@@ -650,6 +652,7 @@ nodes:
        media-type rj45
       !
       router ospf 1
+       mpls ldp autoconfig
        network 0.0.0.0 255.255.255.255 area 0
       !
       ip forward-protocol nd
@@ -739,7 +742,7 @@ nodes:
 
       Current configuration : 3086 bytes
       !
-      ! Last configuration change at 21:48:41 UTC Sun Mar 17 2024
+      ! Last configuration change at 22:07:24 UTC Sun Mar 17 2024
       !
       version 15.9
       service timestamps debug datetime msec
@@ -918,7 +921,7 @@ nodes:
 
       Current configuration : 3086 bytes
       !
-      ! Last configuration change at 21:49:05 UTC Sun Mar 17 2024
+      ! Last configuration change at 22:07:46 UTC Sun Mar 17 2024
       !
       version 15.9
       service timestamps debug datetime msec
@@ -1094,10 +1097,10 @@ nodes:
     y: 60
     configuration: |2-
 
-      Sun Mar 17 22:49:50.624 UTC
+      Sun Mar 17 23:12:26.099 UTC
       Building configuration...
       !! IOS XR Configuration 7.4.1
-      !! Last configuration change at Sun Mar 17 22:49:49 2024 by admin
+      !! Last configuration change at Sun Mar 17 23:12:24 2024 by admin
       !
       hostname XR1
       logging console disable
@@ -1164,6 +1167,13 @@ nodes:
         !
        !
       !
+      mpls ldp
+       router-id 19.19.19.19
+       interface GigabitEthernet0/0/0/0
+       !
+       interface GigabitEthernet0/0/0/1
+       !
+      !
       end
     hide_links: false
     ram: 20480
@@ -1207,10 +1217,10 @@ nodes:
     y: 59
     configuration: |2-
 
-      Sun Mar 17 22:49:51.028 UTC
+      Sun Mar 17 23:12:26.650 UTC
       Building configuration...
       !! IOS XR Configuration 7.4.1
-      !! Last configuration change at Sun Mar 17 22:49:49 2024 by admin
+      !! Last configuration change at Sun Mar 17 23:12:25 2024 by admin
       !
       hostname XR2
       logging console disable
@@ -1290,8 +1300,8 @@ nodes:
     node_definition: csr1000v
     x: 231
     y: 73
-    configuration: "Building configuration...\n\nCurrent configuration : 4105 bytes\n\
-      !\n! Last configuration change at 22:49:47 UTC Sun Mar 17 2024\n!\nversion 17.3\n\
+    configuration: "Building configuration...\n\nCurrent configuration : 4126 bytes\n\
+      !\n! Last configuration change at 23:12:23 UTC Sun Mar 17 2024\n!\nversion 17.3\n\
       service timestamps debug datetime msec\nservice timestamps log datetime msec\n\
       ! Call-home is enabled by Smart-Licensing.\nservice call-home\nplatform qfp\
       \ utilization monitor load 80\nplatform punt-keepalive disable-kernel-core\n\
@@ -1337,16 +1347,17 @@ nodes:
       \ no ip address\n negotiation auto\n no keepalive\n no mop enabled\n no mop\
       \ sysid\n!\ninterface GigabitEthernet4\n no ip address\n negotiation auto\n\
       \ no keepalive\n no mop enabled\n no mop sysid\n!\nrouter ospf 1\n network 0.0.0.0\
-      \ 255.255.255.255 area 0\n!\nip forward-protocol nd\nno ip http server\nip http\
-      \ secure-server\n!\n!\n!\nconnect LOCAL GigabitEthernet3 GigabitEthernet4\n\
-      \ !\n!\n!\n!\n!\n!\n!\ncontrol-plane\n!\n!\n!\n!\n!\n!\nline con 0\n exec-timeout\
-      \ 0 0\n stopbits 1\nline vty 0\n login\n transport input ssh\nline vty 1\n login\n\
-      \ length 0\n transport input ssh\nline vty 2 4\n login\n transport input ssh\n\
-      !\ncall-home\n ! If contact email address in call-home is configured as sch-smart-licensing@cisco.com\n\
-      \ ! the email address configured in Cisco Smart License Portal will be used\
-      \ as contact email address to send SCH notifications.\n contact-email-addr sch-smart-licensing@cisco.com\n\
-      \ profile \"CiscoTAC-1\"\n  active\n  destination transport-method http\n!\n\
-      !\n!\n!\n!\nend"
+      \ 255.255.255.255 area 0\n mpls ldp autoconfig\n!\nip forward-protocol nd\n\
+      no ip http server\nip http secure-server\n!\n!\n!\nconnect LOCAL GigabitEthernet3\
+      \ GigabitEthernet4\n !\n!\n!\n!\n!\n!\n!\ncontrol-plane\n!\n!\n!\n!\n!\n!\n\
+      line con 0\n exec-timeout 0 0\n stopbits 1\nline vty 0\n login\n transport input\
+      \ ssh\nline vty 1\n login\n length 0\n transport input ssh\nline vty 2 4\n login\n\
+      \ transport input ssh\n!\ncall-home\n ! If contact email address in call-home\
+      \ is configured as sch-smart-licensing@cisco.com\n ! the email address configured\
+      \ in Cisco Smart License Portal will be used as contact email address to send\
+      \ SCH notifications.\n contact-email-addr sch-smart-licensing@cisco.com\n profile\
+      \ \"CiscoTAC-1\"\n  active\n  destination transport-method http\n!\n!\n!\n!\n\
+      !\nend"
     hide_links: false
     ram: 3072
     cpus: 1
@@ -1384,7 +1395,7 @@ nodes:
 
       Current configuration : 3086 bytes
       !
-      ! Last configuration change at 21:48:25 UTC Sun Mar 17 2024
+      ! Last configuration change at 22:07:06 UTC Sun Mar 17 2024
       !
       version 15.9
       service timestamps debug datetime msec
