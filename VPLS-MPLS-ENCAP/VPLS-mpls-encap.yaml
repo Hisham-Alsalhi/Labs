@@ -1,0 +1,1738 @@
+lab:
+  description: ''
+  notes: ''
+  title: L2VPNs
+  version: 0.0.5
+nodes:
+  - id: n0
+    label: R3
+    node_definition: iosv
+    x: 443
+    y: 69
+    configuration: |-
+      Building configuration...
+
+      Current configuration : 3127 bytes
+      !
+      ! Last configuration change at 19:43:16 UTC Wed Mar 27 2024
+      !
+      version 15.9
+      service timestamps debug datetime msec
+      service timestamps log datetime msec
+      no service password-encryption
+      !
+      hostname R3
+      !
+      boot-start-marker
+      boot-end-marker
+      !
+      !
+      no logging console
+      !
+      no aaa new-model
+      !
+      !
+      !
+      mmi polling-interval 60
+      no mmi auto-configure
+      no mmi pvc
+      mmi snmp-timeout 180
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      ip cef
+      no ipv6 cef
+      !
+      multilink bundle-name authenticated
+      !
+      !
+      !
+      !
+      !
+      redundancy
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      interface Loopback0
+       ip address 3.3.3.3 255.255.255.255
+      !
+      interface GigabitEthernet0/0
+       ip address 20.3.6.3 255.255.255.0
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      interface GigabitEthernet0/1
+       ip address 20.3.4.3 255.255.255.0
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      interface GigabitEthernet0/2
+       ip address 20.2.3.3 255.255.255.0
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      interface GigabitEthernet0/3
+       no ip address
+       shutdown
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      router ospf 1
+       mpls ldp autoconfig
+       network 0.0.0.0 255.255.255.255 area 0
+      !
+      ip forward-protocol nd
+      !
+      !
+      no ip http server
+      no ip http secure-server
+      !
+      ipv6 ioam timestamp
+      !
+      !
+      !
+      control-plane
+      !
+      banner exec ^C
+      **************************************************************************
+      * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+      * education. IOSv is provided as-is and is not supported by Cisco's      *
+      * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+      * of the IOSv Software or Documentation to any third party for any       *
+      * purposes is expressly prohibited except as otherwise authorized by     *
+      * Cisco in writing.                                                      *
+      **************************************************************************^C
+      banner incoming ^C
+      **************************************************************************
+      * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+      * education. IOSv is provided as-is and is not supported by Cisco's      *
+      * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+      * of the IOSv Software or Documentation to any third party for any       *
+      * purposes is expressly prohibited except as otherwise authorized by     *
+      * Cisco in writing.                                                      *
+      **************************************************************************^C
+      banner login ^C
+      **************************************************************************
+      * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+      * education. IOSv is provided as-is and is not supported by Cisco's      *
+      * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+      * of the IOSv Software or Documentation to any third party for any       *
+      * purposes is expressly prohibited except as otherwise authorized by     *
+      * Cisco in writing.                                                      *
+      **************************************************************************^C
+      !
+      line con 0
+       exec-timeout 0 0
+      line aux 0
+      line vty 0 4
+       login
+       transport input none
+      !
+      no scheduler allocate
+      !
+      end
+    hide_links: false
+    ram: 512
+    cpus: 1
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet0/0
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet0/1
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet0/2
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet0/3
+        type: physical
+  - id: n1
+    label: R6
+    node_definition: iosv
+    x: 619
+    y: 66
+    configuration: |-
+      Building configuration...
+
+      Current configuration : 3138 bytes
+      !
+      ! Last configuration change at 19:42:46 UTC Wed Mar 27 2024
+      !
+      version 15.9
+      service timestamps debug datetime msec
+      service timestamps log datetime msec
+      no service password-encryption
+      !
+      hostname R6
+      !
+      boot-start-marker
+      boot-end-marker
+      !
+      !
+      no logging console
+      !
+      no aaa new-model
+      !
+      !
+      !
+      mmi polling-interval 60
+      no mmi auto-configure
+      no mmi pvc
+      mmi snmp-timeout 180
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      ip cef
+      no ipv6 cef
+      !
+      multilink bundle-name authenticated
+      !
+      !
+      !
+      !
+      !
+      redundancy
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      interface Loopback0
+       ip address 6.6.6.6 255.255.255.255
+      !
+      interface GigabitEthernet0/0
+       ip address 20.3.6.6 255.255.255.0
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      interface GigabitEthernet0/1
+       ip address 20.5.6.6 255.255.255.0
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      interface GigabitEthernet0/2
+       ip address 20.4.6.6 255.255.255.0
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      interface GigabitEthernet0/3
+       ip address 20.6.19.6 255.255.255.0
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      router ospf 1
+       mpls ldp autoconfig
+       network 0.0.0.0 255.255.255.255 area 0
+      !
+      ip forward-protocol nd
+      !
+      !
+      no ip http server
+      no ip http secure-server
+      !
+      ipv6 ioam timestamp
+      !
+      !
+      !
+      control-plane
+      !
+      banner exec ^C
+      **************************************************************************
+      * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+      * education. IOSv is provided as-is and is not supported by Cisco's      *
+      * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+      * of the IOSv Software or Documentation to any third party for any       *
+      * purposes is expressly prohibited except as otherwise authorized by     *
+      * Cisco in writing.                                                      *
+      **************************************************************************^C
+      banner incoming ^C
+      **************************************************************************
+      * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+      * education. IOSv is provided as-is and is not supported by Cisco's      *
+      * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+      * of the IOSv Software or Documentation to any third party for any       *
+      * purposes is expressly prohibited except as otherwise authorized by     *
+      * Cisco in writing.                                                      *
+      **************************************************************************^C
+      banner login ^C
+      **************************************************************************
+      * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+      * education. IOSv is provided as-is and is not supported by Cisco's      *
+      * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+      * of the IOSv Software or Documentation to any third party for any       *
+      * purposes is expressly prohibited except as otherwise authorized by     *
+      * Cisco in writing.                                                      *
+      **************************************************************************^C
+      !
+      line con 0
+       exec-timeout 0 0
+      line aux 0
+      line vty 0 4
+       login
+       transport input none
+      !
+      no scheduler allocate
+      !
+      end
+    hide_links: false
+    ram: 512
+    cpus: 1
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet0/0
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet0/1
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet0/2
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet0/3
+        type: physical
+  - id: n2
+    label: R7
+    node_definition: iosv
+    x: 429
+    y: 389
+    configuration: |-
+      Building configuration...
+
+      Current configuration : 3086 bytes
+      !
+      ! Last configuration change at 19:45:14 UTC Wed Mar 27 2024
+      !
+      version 15.9
+      service timestamps debug datetime msec
+      service timestamps log datetime msec
+      no service password-encryption
+      !
+      hostname R7
+      !
+      boot-start-marker
+      boot-end-marker
+      !
+      !
+      no logging console
+      !
+      no aaa new-model
+      !
+      !
+      !
+      mmi polling-interval 60
+      no mmi auto-configure
+      no mmi pvc
+      mmi snmp-timeout 180
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      ip cef
+      no ipv6 cef
+      !
+      multilink bundle-name authenticated
+      !
+      !
+      !
+      !
+      !
+      redundancy
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      interface Loopback0
+       ip address 7.7.7.7 255.255.255.255
+      !
+      interface GigabitEthernet0/0
+       ip address 10.0.0.7 255.255.255.0
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      interface GigabitEthernet0/1
+       no ip address
+       shutdown
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      interface GigabitEthernet0/2
+       no ip address
+       shutdown
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      interface GigabitEthernet0/3
+       no ip address
+       shutdown
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      router ospf 1
+       network 0.0.0.0 255.255.255.255 area 0
+      !
+      ip forward-protocol nd
+      !
+      !
+      no ip http server
+      no ip http secure-server
+      !
+      ipv6 ioam timestamp
+      !
+      !
+      !
+      control-plane
+      !
+      banner exec ^C
+      **************************************************************************
+      * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+      * education. IOSv is provided as-is and is not supported by Cisco's      *
+      * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+      * of the IOSv Software or Documentation to any third party for any       *
+      * purposes is expressly prohibited except as otherwise authorized by     *
+      * Cisco in writing.                                                      *
+      **************************************************************************^C
+      banner incoming ^C
+      **************************************************************************
+      * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+      * education. IOSv is provided as-is and is not supported by Cisco's      *
+      * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+      * of the IOSv Software or Documentation to any third party for any       *
+      * purposes is expressly prohibited except as otherwise authorized by     *
+      * Cisco in writing.                                                      *
+      **************************************************************************^C
+      banner login ^C
+      **************************************************************************
+      * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+      * education. IOSv is provided as-is and is not supported by Cisco's      *
+      * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+      * of the IOSv Software or Documentation to any third party for any       *
+      * purposes is expressly prohibited except as otherwise authorized by     *
+      * Cisco in writing.                                                      *
+      **************************************************************************^C
+      !
+      line con 0
+       exec-timeout 0 0
+      line aux 0
+      line vty 0 4
+       login
+       transport input none
+      !
+      no scheduler allocate
+      !
+      end
+    hide_links: false
+    ram: 512
+    cpus: 1
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet0/0
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet0/1
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet0/2
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet0/3
+        type: physical
+  - id: n3
+    label: R8
+    node_definition: iosv
+    x: 617
+    y: 393
+    configuration: |-
+      Building configuration...
+
+      Current configuration : 3086 bytes
+      !
+      ! Last configuration change at 19:45:29 UTC Wed Mar 27 2024
+      !
+      version 15.9
+      service timestamps debug datetime msec
+      service timestamps log datetime msec
+      no service password-encryption
+      !
+      hostname R8
+      !
+      boot-start-marker
+      boot-end-marker
+      !
+      !
+      no logging console
+      !
+      no aaa new-model
+      !
+      !
+      !
+      mmi polling-interval 60
+      no mmi auto-configure
+      no mmi pvc
+      mmi snmp-timeout 180
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      ip cef
+      no ipv6 cef
+      !
+      multilink bundle-name authenticated
+      !
+      !
+      !
+      !
+      !
+      redundancy
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      interface Loopback0
+       ip address 8.8.8.8 255.255.255.255
+      !
+      interface GigabitEthernet0/0
+       ip address 10.0.0.8 255.255.255.0
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      interface GigabitEthernet0/1
+       no ip address
+       shutdown
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      interface GigabitEthernet0/2
+       no ip address
+       shutdown
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      interface GigabitEthernet0/3
+       no ip address
+       shutdown
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      router ospf 1
+       network 0.0.0.0 255.255.255.255 area 0
+      !
+      ip forward-protocol nd
+      !
+      !
+      no ip http server
+      no ip http secure-server
+      !
+      ipv6 ioam timestamp
+      !
+      !
+      !
+      control-plane
+      !
+      banner exec ^C
+      **************************************************************************
+      * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+      * education. IOSv is provided as-is and is not supported by Cisco's      *
+      * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+      * of the IOSv Software or Documentation to any third party for any       *
+      * purposes is expressly prohibited except as otherwise authorized by     *
+      * Cisco in writing.                                                      *
+      **************************************************************************^C
+      banner incoming ^C
+      **************************************************************************
+      * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+      * education. IOSv is provided as-is and is not supported by Cisco's      *
+      * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+      * of the IOSv Software or Documentation to any third party for any       *
+      * purposes is expressly prohibited except as otherwise authorized by     *
+      * Cisco in writing.                                                      *
+      **************************************************************************^C
+      banner login ^C
+      **************************************************************************
+      * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+      * education. IOSv is provided as-is and is not supported by Cisco's      *
+      * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+      * of the IOSv Software or Documentation to any third party for any       *
+      * purposes is expressly prohibited except as otherwise authorized by     *
+      * Cisco in writing.                                                      *
+      **************************************************************************^C
+      !
+      line con 0
+       exec-timeout 0 0
+      line aux 0
+      line vty 0 4
+       login
+       transport input none
+      !
+      no scheduler allocate
+      !
+      end
+    hide_links: false
+    ram: 512
+    cpus: 1
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet0/0
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet0/1
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet0/2
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet0/3
+        type: physical
+  - id: n4
+    label: XR1
+    node_definition: iosxrv9000
+    x: 770
+    y: 66
+    configuration: |2-
+
+      Wed Mar 27 23:20:16.236 UTC
+      Building configuration...
+      !! IOS XR Configuration 7.4.1
+      !! Last configuration change at Wed Mar 27 23:20:13 2024 by cisco
+      !
+      hostname XR1
+      logging console disable
+      username cisco
+       group root-lr
+       group cisco-support
+       password 7 060506324F41
+      !
+      username admin
+       group root-lr
+       group cisco-support
+       password 7 050A02022842
+      !
+      username lab
+       group root-lr
+       group cisco-support
+       password 7 0507070D
+      !
+      cdp advertise v1
+      line console
+       exec-timeout 0 0
+       absolute-timeout 0
+       session-timeout 0
+      !
+      line default
+       exec-timeout 0 0
+       absolute-timeout 0
+       session-timeout 0
+      !
+      call-home
+       service active
+       contact smart-licensing
+       profile CiscoTAC-1
+        active
+        destination transport-method http
+       !
+      !
+      interface Loopback0
+       ipv4 address 19.19.19.19 255.255.255.255
+      !
+      interface MgmtEth0/RP0/CPU0/0
+       shutdown
+      !
+      interface GigabitEthernet0/0/0/0
+       cdp
+       ipv4 address 20.6.19.19 255.255.255.0
+      !
+      interface GigabitEthernet0/0/0/1
+       cdp
+       ipv4 address 20.5.19.19 255.255.255.0
+      !
+      interface GigabitEthernet0/0/0/2
+       cdp
+       shutdown
+      !
+      interface preconfigure GigabitEthernet0/0/0/0/0
+      !
+      router ospf 1
+       address-family ipv4
+       area 0
+        interface Loopback0
+        !
+        interface GigabitEthernet0/0/0/0
+        !
+        interface GigabitEthernet0/0/0/1
+        !
+       !
+      !
+      mpls ldp
+       router-id 19.19.19.19
+       interface GigabitEthernet0/0/0/0
+       !
+       interface GigabitEthernet0/0/0/1
+       !
+      !
+      end
+    hide_links: false
+    ram: 20480
+    cpus: 4
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: MgmtEth0/RP0/CPU0/0
+        type: physical
+      - id: i2
+        slot: 1
+        label: donotuse1
+        type: physical
+      - id: i3
+        slot: 2
+        label: donotuse2
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet0/0/0/0
+        type: physical
+      - id: i5
+        slot: 4
+        label: GigabitEthernet0/0/0/1
+        type: physical
+      - id: i6
+        slot: 5
+        label: GigabitEthernet0/0/0/2
+        type: physical
+  - id: n5
+    label: XR2
+    node_definition: iosxrv9000
+    x: 961
+    y: 65
+    configuration: |2-
+
+      Wed Mar 27 23:20:17.376 UTC
+      Building configuration...
+      !! IOS XR Configuration 7.4.1
+      !! Last configuration change at Wed Mar 27 23:20:15 2024 by cisco
+      !
+      hostname XR2
+      logging console disable
+      username cisco
+       group root-lr
+       group cisco-support
+       password 7 05080F1C2243
+      !
+      username admin
+       group root-lr
+       group cisco-support
+       password 7 082048430017
+      !
+      username lab
+       group root-lr
+       group cisco-support
+       password 7 011F0706
+      !
+      line console
+       exec-timeout 0 0
+       absolute-timeout 0
+       session-timeout 0
+      !
+      line default
+       exec-timeout 0 0
+       absolute-timeout 0
+       session-timeout 0
+      !
+      call-home
+       service active
+       contact smart-licensing
+       profile CiscoTAC-1
+        active
+        destination transport-method http
+       !
+      !
+      interface Loopback0
+       ipv4 address 20.20.20.20 255.255.255.255
+      !
+      interface MgmtEth0/RP0/CPU0/0
+       shutdown
+      !
+      interface GigabitEthernet0/0/0/0
+       cdp
+       ipv4 address 10.0.0.20 255.255.255.0
+      !
+      interface preconfigure GigabitEthernet0/0/0/1
+      !
+      end
+    hide_links: false
+    ram: 20480
+    cpus: 4
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: MgmtEth0/RP0/CPU0/0
+        type: physical
+      - id: i2
+        slot: 1
+        label: donotuse1
+        type: physical
+      - id: i3
+        slot: 2
+        label: donotuse2
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet0/0/0/0
+        type: physical
+  - id: n6
+    label: R2
+    node_definition: csr1000v
+    x: 234
+    y: 65
+    configuration: "Building configuration...\n\nCurrent configuration : 6586 bytes\n\
+      !\n! Last configuration change at 23:20:08 UTC Wed Mar 27 2024\n!\nversion 17.3\n\
+      service timestamps debug datetime msec\nservice timestamps log datetime msec\n\
+      service call-home\nplatform qfp utilization monitor load 80\nplatform punt-keepalive\
+      \ disable-kernel-core\nplatform console serial\n!\nhostname R2\n!\nboot-start-marker\n\
+      boot-end-marker\n!\n!\nno logging console\n!\nno aaa new-model\n!\n!\n!\n!\n\
+      !\n!\n!\n!\n!\n!\nlogin on-success log\n!\n!\n!\n!\n!\n!\n!\nsubscriber templating\n\
+      !\n!\n!\n!\n!\n!\nmultilink bundle-name authenticated\nl2vpn vfi context VPLS1\n\
+      \ vpn id 3\n member 5.5.5.5 encapsulation mpls\n member 4.4.4.4 encapsulation\
+      \ mpls\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\ncrypto pki trustpoint\
+      \ SLA-TrustPoint\n enrollment pkcs12\n revocation-check crl\n!\ncrypto pki trustpoint\
+      \ TP-self-signed-1132418465\n enrollment selfsigned\n subject-name cn=IOS-Self-Signed-Certificate-1132418465\n\
+      \ revocation-check none\n rsakeypair TP-self-signed-1132418465\n!\n!\ncrypto\
+      \ pki certificate chain SLA-TrustPoint\n certificate ca 01\n  30820321 30820209\
+      \ A0030201 02020101 300D0609 2A864886 F70D0101 0B050030\n  32310E30 0C060355\
+      \ 040A1305 43697363 6F312030 1E060355 04031317 43697363\n  6F204C69 63656E73\
+      \ 696E6720 526F6F74 20434130 1E170D31 33303533 30313934\n  3834375A 170D3338\
+      \ 30353330 31393438 34375A30 32310E30 0C060355 040A1305\n  43697363 6F312030\
+      \ 1E060355 04031317 43697363 6F204C69 63656E73 696E6720\n  526F6F74 20434130\
+      \ 82012230 0D06092A 864886F7 0D010101 05000382 010F0030\n  82010A02 82010100\
+      \ A6BCBD96 131E05F7 145EA72C 2CD686E6 17222EA1 F1EFF64D\n  CBB4C798 212AA147\
+      \ C655D8D7 9471380D 8711441E 1AAF071A 9CAE6388 8A38E520\n  1C394D78 462EF239\
+      \ C659F715 B98C0A59 5BBB5CBD 0CFEBEA3 700A8BF7 D8F256EE\n  4AA4E80D DB6FD1C9\
+      \ 60B1FD18 FFC69C96 6FA68957 A2617DE7 104FDC5F EA2956AC\n  7390A3EB 2B5436AD\
+      \ C847A2C5 DAB553EB 69A9A535 58E9F3E3 C0BD23CF 58BD7188\n  68E69491 20F320E7\
+      \ 948E71D7 AE3BCC84 F10684C7 4BC8E00F 539BA42B 42C68BB7\n  C7479096 B4CB2D62\
+      \ EA2F505D C7B062A4 6811D95B E8250FC4 5D5D5FB8 8F27D191\n  C55F0D76 61F9A4CD\
+      \ 3D992327 A8BB03BD 4E6D7069 7CBADF8B DF5F4368 95135E44\n  DFC7C6CF 04DD7FD1\
+      \ 02030100 01A34230 40300E06 03551D0F 0101FF04 04030201\n  06300F06 03551D13\
+      \ 0101FF04 05300301 01FF301D 0603551D 0E041604 1449DC85\n  4B3D31E5 1B3E6A17\
+      \ 606AF333 3D3B4C73 E8300D06 092A8648 86F70D01 010B0500\n  03820101 00507F24\
+      \ D3932A66 86025D9F E838AE5C 6D4DF6B0 49631C78 240DA905\n  604EDCDE FF4FED2B\
+      \ 77FC460E CD636FDB DD44681E 3A5673AB 9093D3B1 6C9E3D8B\n  D98987BF E40CBD9E\
+      \ 1AECA0C2 2189BB5C 8FA85686 CD98B646 5575B146 8DFC66A8\n  467A3DF4 4D565700\
+      \ 6ADF0F0D CF835015 3C04FF7C 21E878AC 11BA9CD2 55A9232C\n  7CA7B7E6 C1AF74F6\
+      \ 152E99B7 B1FCF9BB E973DE7F 5BDDEB86 C71E3B49 1765308B\n  5FB0DA06 B92AFE7F\
+      \ 494E8A9E 07B85737 F3A58BE1 1A48A229 C37C1E69 39F08678\n  80DDCD16 D6BACECA\
+      \ EEBC7CF9 8428787B 35202CDC 60E4616A B623CDBD 230E3AFB\n  418616A9 4093E049\
+      \ 4D10AB75 27E86F73 932E35B5 8862FDAE 0275156F 719BB2F0\n  D697DF7F 28\n  \t\
+      quit\ncrypto pki certificate chain TP-self-signed-1132418465\n certificate self-signed\
+      \ 01\n  30820330 30820218 A0030201 02020101 300D0609 2A864886 F70D0101 05050030\n\
+      \  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274\n\
+      \  69666963 6174652D 31313332 34313834 3635301E 170D3234 30333237 31383438\n\
+      \  35375A17 0D333430 33323731 38343835 375A3031 312F302D 06035504 03132649\n\
+      \  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D31 31333234\n\
+      \  31383436 35308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201\n\
+      \  0A028201 01009746 84331F8B 40A1B6DA 18839692 0579FD13 7B9BC7B1 4092DDDB\n\
+      \  A0561B41 760EFD97 ADE658E8 F3627DF4 F7D8AE7A C15470A7 6F4EBAC3 20842840\n\
+      \  3F6804BC AB2471AA 6F39594E AD886A76 BB068782 61598999 75D6C0D1 268A8F1A\n\
+      \  14211BF3 596D96DB E5733359 6B5A34D7 C23B48C6 B66D236A D4385D9F 8B983347\n\
+      \  4BF185C6 628A2994 87B01B2C 9C18EA12 2B2EDA2E 0EEA1B36 F7BAF10D 535609E4\n\
+      \  766852B6 FEB2D9A2 961D027D 80264ACD 74F9A503 6CF06D48 E1BF3369 B0163A03\n\
+      \  E68353D4 F583FC64 B18A4710 339C14E6 0BD77F00 6F9138D3 BE41B5EA F68FCC15\n\
+      \  AC448ADA 442C1BBD 2E9599E0 2EDD27EE 3C0A820D 4204D694 DCA8F99C B5167A29\n\
+      \  DE365BD7 20990203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF\n\
+      \  301F0603 551D2304 18301680 14254AF1 479A58A0 8B347DA4 741E3888 71766421\n\
+      \  22301D06 03551D0E 04160414 254AF147 9A58A08B 347DA474 1E388871 76642122\n\
+      \  300D0609 2A864886 F70D0101 05050003 82010100 32A7A7F9 7B66C4B4 177F3B15\n\
+      \  878D368F 3FA00246 90BF2063 1DA9B69D 922EFD45 2204C40C 5F211DD8 3A4E2354\n\
+      \  28FECD15 9E37C843 B1D5E4D3 9F7F9673 A124F902 04AFF39C 9A95C849 3337F192\n\
+      \  DAADE471 FCF08736 3C3F6FF1 34073600 8CC0D557 884B5A34 F5EABD5E 58399B37\n\
+      \  8F1255D4 7E698BB2 E6D8AA14 09D5A241 91B961CC 84BC34B9 57FE6937 19A32FB3\n\
+      \  9B522159 708927CB CAAB1AAA 6DF43AC3 2FA6E110 B0F281AA 0D0483AE 6F8EFEF9\n\
+      \  053B5AAF DF87FAE5 BC5A4A83 902AEAA9 CDCFA316 A908A436 581A3FA8 6DB46964\n\
+      \  C55928E1 74A7BDB1 402BEC10 71DD6F3F 92F028F8 BEB68556 5F24E731 D78BED3E\n\
+      \  D44C96EB 05B0FCF7 6F30696B 9C207520 B417D462\n  \tquit\n!\nlicense udi pid\
+      \ CSR1000V sn 9A94VAH54QT\ndiagnostic bootup level minimal\nmemory free low-watermark\
+      \ processor 71489\n!\n!\nspanning-tree extend system-id\n!\n!\nredundancy\n\
+      !\nbridge-domain 2\n member GigabitEthernet3 service-instance 1\n member GigabitEthernet4\
+      \ service-instance 1\n member vfi VPLS1\n!\n!\n!\n!\n!\n!\ncdp run\n!\n!\n!\n\
+      !\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\ninterface Loopback0\n ip address\
+      \ 2.2.2.2 255.255.255.255\n!\ninterface GigabitEthernet1\n ip address 20.2.3.2\
+      \ 255.255.255.0\n negotiation auto\n cdp enable\n no mop enabled\n no mop sysid\n\
+      !\ninterface GigabitEthernet2\n ip address 20.2.4.2 255.255.255.0\n shutdown\n\
+      \ negotiation auto\n cdp enable\n no mop enabled\n no mop sysid\n!\ninterface\
+      \ GigabitEthernet3\n no ip address\n negotiation auto\n no keepalive\n no mop\
+      \ enabled\n no mop sysid\n service instance 1 ethernet\n  encapsulation default\n\
+      \ !\n!\ninterface GigabitEthernet4\n no ip address\n negotiation auto\n no keepalive\n\
+      \ no mop enabled\n no mop sysid\n service instance 1 ethernet\n  encapsulation\
+      \ default\n !\n!\nrouter ospf 1\n network 0.0.0.0 255.255.255.255 area 0\n mpls\
+      \ ldp autoconfig\n!\nip forward-protocol nd\nno ip http server\nip http secure-server\n\
+      !\n!\n!\n!\n!\n!\n!\n!\ncontrol-plane\n!\n!\n!\n!\n!\n!\nline con 0\n exec-timeout\
+      \ 0 0\n stopbits 1\nline vty 0\n login\n transport input ssh\nline vty 1\n login\n\
+      \ length 0\n transport input ssh\nline vty 2 4\n login\n transport input ssh\n\
+      !\ncall-home\n ! If contact email address in call-home is configured as sch-smart-licensing@cisco.com\n\
+      \ ! the email address configured in Cisco Smart License Portal will be used\
+      \ as contact email address to send SCH notifications.\n contact-email-addr sch-smart-licensing@cisco.com\n\
+      \ profile \"CiscoTAC-1\"\n  active\n  destination transport-method http\n!\n\
+      !\n!\n!\n!\nend"
+    hide_links: false
+    ram: 3072
+    cpus: 1
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet1
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet2
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet3
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet4
+        type: physical
+  - id: n7
+    label: R1
+    node_definition: iosv
+    x: 34
+    y: 63
+    configuration: |-
+      Building configuration...
+
+      Current configuration : 3086 bytes
+      !
+      ! Last configuration change at 19:43:59 UTC Wed Mar 27 2024
+      !
+      version 15.9
+      service timestamps debug datetime msec
+      service timestamps log datetime msec
+      no service password-encryption
+      !
+      hostname R1
+      !
+      boot-start-marker
+      boot-end-marker
+      !
+      !
+      no logging console
+      !
+      no aaa new-model
+      !
+      !
+      !
+      mmi polling-interval 60
+      no mmi auto-configure
+      no mmi pvc
+      mmi snmp-timeout 180
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      ip cef
+      no ipv6 cef
+      !
+      multilink bundle-name authenticated
+      !
+      !
+      !
+      !
+      !
+      redundancy
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      interface Loopback0
+       ip address 1.1.1.1 255.255.255.255
+      !
+      interface GigabitEthernet0/0
+       ip address 10.0.0.1 255.255.255.0
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      interface GigabitEthernet0/1
+       no ip address
+       shutdown
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      interface GigabitEthernet0/2
+       no ip address
+       shutdown
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      interface GigabitEthernet0/3
+       no ip address
+       shutdown
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      router ospf 1
+       network 0.0.0.0 255.255.255.255 area 0
+      !
+      ip forward-protocol nd
+      !
+      !
+      no ip http server
+      no ip http secure-server
+      !
+      ipv6 ioam timestamp
+      !
+      !
+      !
+      control-plane
+      !
+      banner exec ^C
+      **************************************************************************
+      * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+      * education. IOSv is provided as-is and is not supported by Cisco's      *
+      * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+      * of the IOSv Software or Documentation to any third party for any       *
+      * purposes is expressly prohibited except as otherwise authorized by     *
+      * Cisco in writing.                                                      *
+      **************************************************************************^C
+      banner incoming ^C
+      **************************************************************************
+      * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+      * education. IOSv is provided as-is and is not supported by Cisco's      *
+      * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+      * of the IOSv Software or Documentation to any third party for any       *
+      * purposes is expressly prohibited except as otherwise authorized by     *
+      * Cisco in writing.                                                      *
+      **************************************************************************^C
+      banner login ^C
+      **************************************************************************
+      * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+      * education. IOSv is provided as-is and is not supported by Cisco's      *
+      * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+      * of the IOSv Software or Documentation to any third party for any       *
+      * purposes is expressly prohibited except as otherwise authorized by     *
+      * Cisco in writing.                                                      *
+      **************************************************************************^C
+      !
+      line con 0
+       exec-timeout 0 0
+      line aux 0
+      line vty 0 4
+       login
+       transport input none
+      !
+      no scheduler allocate
+      !
+      end
+    hide_links: false
+    ram: 512
+    cpus: 1
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet0/0
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet0/1
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet0/2
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet0/3
+        type: physical
+  - id: n8
+    label: R9
+    node_definition: iosv
+    x: 68
+    y: 176
+    configuration: |-
+      Building configuration...
+
+      Current configuration : 3086 bytes
+      !
+      ! Last configuration change at 19:46:29 UTC Wed Mar 27 2024
+      !
+      version 15.9
+      service timestamps debug datetime msec
+      service timestamps log datetime msec
+      no service password-encryption
+      !
+      hostname R9
+      !
+      boot-start-marker
+      boot-end-marker
+      !
+      !
+      no logging console
+      !
+      no aaa new-model
+      !
+      !
+      !
+      mmi polling-interval 60
+      no mmi auto-configure
+      no mmi pvc
+      mmi snmp-timeout 180
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      ip cef
+      no ipv6 cef
+      !
+      multilink bundle-name authenticated
+      !
+      !
+      !
+      !
+      !
+      redundancy
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      interface Loopback0
+       ip address 9.9.9.9 255.255.255.255
+      !
+      interface GigabitEthernet0/0
+       ip address 10.0.0.9 255.255.255.0
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      interface GigabitEthernet0/1
+       no ip address
+       shutdown
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      interface GigabitEthernet0/2
+       no ip address
+       shutdown
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      interface GigabitEthernet0/3
+       no ip address
+       shutdown
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      router ospf 1
+       network 0.0.0.0 255.255.255.255 area 0
+      !
+      ip forward-protocol nd
+      !
+      !
+      no ip http server
+      no ip http secure-server
+      !
+      ipv6 ioam timestamp
+      !
+      !
+      !
+      control-plane
+      !
+      banner exec ^C
+      **************************************************************************
+      * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+      * education. IOSv is provided as-is and is not supported by Cisco's      *
+      * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+      * of the IOSv Software or Documentation to any third party for any       *
+      * purposes is expressly prohibited except as otherwise authorized by     *
+      * Cisco in writing.                                                      *
+      **************************************************************************^C
+      banner incoming ^C
+      **************************************************************************
+      * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+      * education. IOSv is provided as-is and is not supported by Cisco's      *
+      * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+      * of the IOSv Software or Documentation to any third party for any       *
+      * purposes is expressly prohibited except as otherwise authorized by     *
+      * Cisco in writing.                                                      *
+      **************************************************************************^C
+      banner login ^C
+      **************************************************************************
+      * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+      * education. IOSv is provided as-is and is not supported by Cisco's      *
+      * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+      * of the IOSv Software or Documentation to any third party for any       *
+      * purposes is expressly prohibited except as otherwise authorized by     *
+      * Cisco in writing.                                                      *
+      **************************************************************************^C
+      !
+      line con 0
+       exec-timeout 0 0
+      line aux 0
+      line vty 0 4
+       login
+       transport input none
+      !
+      no scheduler allocate
+      !
+      end
+    hide_links: false
+    ram: 512
+    cpus: 1
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet0/0
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet0/1
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet0/2
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet0/3
+        type: physical
+  - id: n9
+    label: R4
+    node_definition: csr1000v
+    x: 431
+    y: 249
+    configuration: "Building configuration...\n\nCurrent configuration : 6578 bytes\n\
+      !\n! Last configuration change at 23:20:09 UTC Wed Mar 27 2024\n!\nversion 17.3\n\
+      service timestamps debug datetime msec\nservice timestamps log datetime msec\n\
+      service call-home\nplatform qfp utilization monitor load 80\nplatform punt-keepalive\
+      \ disable-kernel-core\nplatform console serial\n!\nhostname R4\n!\nboot-start-marker\n\
+      boot-end-marker\n!\n!\nno logging console\n!\nno aaa new-model\n!\n!\n!\n!\n\
+      !\n!\n!\n!\n!\n!\nlogin on-success log\n!\n!\n!\n!\n!\n!\n!\nsubscriber templating\n\
+      !\n!\n!\n!\n!\n!\nmultilink bundle-name authenticated\nl2vpn vfi context VPLS1\n\
+      \ vpn id 3\n member 5.5.5.5 encapsulation mpls\n member 2.2.2.2 encapsulation\
+      \ mpls\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\ncrypto pki trustpoint\
+      \ SLA-TrustPoint\n enrollment pkcs12\n revocation-check crl\n!\ncrypto pki trustpoint\
+      \ TP-self-signed-1553487753\n enrollment selfsigned\n subject-name cn=IOS-Self-Signed-Certificate-1553487753\n\
+      \ revocation-check none\n rsakeypair TP-self-signed-1553487753\n!\n!\ncrypto\
+      \ pki certificate chain SLA-TrustPoint\n certificate ca 01\n  30820321 30820209\
+      \ A0030201 02020101 300D0609 2A864886 F70D0101 0B050030\n  32310E30 0C060355\
+      \ 040A1305 43697363 6F312030 1E060355 04031317 43697363\n  6F204C69 63656E73\
+      \ 696E6720 526F6F74 20434130 1E170D31 33303533 30313934\n  3834375A 170D3338\
+      \ 30353330 31393438 34375A30 32310E30 0C060355 040A1305\n  43697363 6F312030\
+      \ 1E060355 04031317 43697363 6F204C69 63656E73 696E6720\n  526F6F74 20434130\
+      \ 82012230 0D06092A 864886F7 0D010101 05000382 010F0030\n  82010A02 82010100\
+      \ A6BCBD96 131E05F7 145EA72C 2CD686E6 17222EA1 F1EFF64D\n  CBB4C798 212AA147\
+      \ C655D8D7 9471380D 8711441E 1AAF071A 9CAE6388 8A38E520\n  1C394D78 462EF239\
+      \ C659F715 B98C0A59 5BBB5CBD 0CFEBEA3 700A8BF7 D8F256EE\n  4AA4E80D DB6FD1C9\
+      \ 60B1FD18 FFC69C96 6FA68957 A2617DE7 104FDC5F EA2956AC\n  7390A3EB 2B5436AD\
+      \ C847A2C5 DAB553EB 69A9A535 58E9F3E3 C0BD23CF 58BD7188\n  68E69491 20F320E7\
+      \ 948E71D7 AE3BCC84 F10684C7 4BC8E00F 539BA42B 42C68BB7\n  C7479096 B4CB2D62\
+      \ EA2F505D C7B062A4 6811D95B E8250FC4 5D5D5FB8 8F27D191\n  C55F0D76 61F9A4CD\
+      \ 3D992327 A8BB03BD 4E6D7069 7CBADF8B DF5F4368 95135E44\n  DFC7C6CF 04DD7FD1\
+      \ 02030100 01A34230 40300E06 03551D0F 0101FF04 04030201\n  06300F06 03551D13\
+      \ 0101FF04 05300301 01FF301D 0603551D 0E041604 1449DC85\n  4B3D31E5 1B3E6A17\
+      \ 606AF333 3D3B4C73 E8300D06 092A8648 86F70D01 010B0500\n  03820101 00507F24\
+      \ D3932A66 86025D9F E838AE5C 6D4DF6B0 49631C78 240DA905\n  604EDCDE FF4FED2B\
+      \ 77FC460E CD636FDB DD44681E 3A5673AB 9093D3B1 6C9E3D8B\n  D98987BF E40CBD9E\
+      \ 1AECA0C2 2189BB5C 8FA85686 CD98B646 5575B146 8DFC66A8\n  467A3DF4 4D565700\
+      \ 6ADF0F0D CF835015 3C04FF7C 21E878AC 11BA9CD2 55A9232C\n  7CA7B7E6 C1AF74F6\
+      \ 152E99B7 B1FCF9BB E973DE7F 5BDDEB86 C71E3B49 1765308B\n  5FB0DA06 B92AFE7F\
+      \ 494E8A9E 07B85737 F3A58BE1 1A48A229 C37C1E69 39F08678\n  80DDCD16 D6BACECA\
+      \ EEBC7CF9 8428787B 35202CDC 60E4616A B623CDBD 230E3AFB\n  418616A9 4093E049\
+      \ 4D10AB75 27E86F73 932E35B5 8862FDAE 0275156F 719BB2F0\n  D697DF7F 28\n  \t\
+      quit\ncrypto pki certificate chain TP-self-signed-1553487753\n certificate self-signed\
+      \ 01\n  30820330 30820218 A0030201 02020101 300D0609 2A864886 F70D0101 05050030\n\
+      \  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274\n\
+      \  69666963 6174652D 31353533 34383737 3533301E 170D3234 30333137 32333337\n\
+      \  31365A17 0D333430 33313732 33333731 365A3031 312F302D 06035504 03132649\n\
+      \  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D31 35353334\n\
+      \  38373735 33308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201\n\
+      \  0A028201 0100BAD9 88395C6B D58D86E3 09F586F4 93F0A5EF 3D3AD9DA 675669C1\n\
+      \  998E4D34 44FD83AC 52D03CEA F84519F6 9F5D6607 8D7ED218 C96060EE A425C3B4\n\
+      \  B1E00706 C605758A 5DFD62BB DFBB56C4 1F5363C8 BF901E38 0ACE5793 0AF05E48\n\
+      \  5FFE0E9C 11AFAE8C F2B32672 525CBC75 80A90C33 D6118BF0 24F98391 8915C5D1\n\
+      \  FBB766C8 1372BE7B 3C4FBD62 DB263C68 D40A1B0D D6878B2E 9A10B019 114A5F6A\n\
+      \  A604A74E 9CFA1713 F9C54D3D 77A36960 A31125E8 D313B224 23F2DA81 DF7F5A9A\n\
+      \  B6E5484A FF505606 4881918B 05CC15FB 9E22ADD9 629D22F5 F9D9B474 208C5F6C\n\
+      \  502E9185 ACBC38FE 7772B54C 0047CBD2 C3D4462B CD72B792 82F4721E EFF8FD41\n\
+      \  4ED0450C B6710203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF\n\
+      \  301F0603 551D2304 18301680 14D48385 A352A6EB 191C0AF0 507F1429 708F3920\n\
+      \  2F301D06 03551D0E 04160414 D48385A3 52A6EB19 1C0AF050 7F142970 8F39202F\n\
+      \  300D0609 2A864886 F70D0101 05050003 82010100 595586C0 FA2DE4FF 5BC961FD\n\
+      \  DB93AB2D 402C9550 28457C38 11101C48 B1B52C61 A887342F F71E49CA D009DCAF\n\
+      \  A53830EC AF82F83E 8BA1CCED F23A35C2 098EE6F1 4430103C 4A3FCEF0 F21BCE4E\n\
+      \  3779C2F4 D2CB0A71 D23183D7 CB2B043E 811B6DD2 1504CD34 3F293B74 B11BC5AE\n\
+      \  5A81C800 A2E55CFD 36523B15 1B32D75B 1537DBF8 4D1E253F 30E1F7F4 FF6A3B36\n\
+      \  597E6EB5 AA585F4E 0BFCBE46 D2DF2FB6 0D7D45A4 17470752 9D512EA5 E8C2F36D\n\
+      \  69017E04 F74AB6F5 D1660B49 E546CD4E B1B20DE5 7643A465 923A7AF6 E5C53BA1\n\
+      \  199C625D F6DFAC4E 2BDCD972 3AB5A59F C5AF41C1 2059084E D51163C6 CF1F86AC\n\
+      \  68E68DF5 F986189E 56400FA3 92E78599 D1BB74F8\n  \tquit\n!\nlicense udi pid\
+      \ CSR1000V sn 9DUY07LHLN0\ndiagnostic bootup level minimal\nmemory free low-watermark\
+      \ processor 71489\n!\n!\nspanning-tree extend system-id\n!\n!\nredundancy\n\
+      !\nbridge-domain 2\n member GigabitEthernet5 service-instance 1\n member vfi\
+      \ VPLS1\n!\n!\n!\n!\n!\n!\ncdp run\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n\
+      !\n!\n!\n!\n!\n!\ninterface Loopback0\n ip address 4.4.4.4 255.255.255.255\n\
+      !\ninterface GigabitEthernet1\n ip address 20.2.4.4 255.255.255.0\n negotiation\
+      \ auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet2\n ip address\
+      \ 20.3.4.4 255.255.255.0\n negotiation auto\n no mop enabled\n no mop sysid\n\
+      !\ninterface GigabitEthernet3\n ip address 20.4.6.4 255.255.255.0\n negotiation\
+      \ auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet4\n ip address\
+      \ 20.4.5.4 255.255.255.0\n shutdown\n negotiation auto\n no mop enabled\n no\
+      \ mop sysid\n!\ninterface GigabitEthernet5\n no ip address\n negotiation auto\n\
+      \ cdp enable\n no mop enabled\n no mop sysid\n service instance 1 ethernet\n\
+      \  encapsulation default\n !\n!\nrouter ospf 1\n network 0.0.0.0 255.255.255.255\
+      \ area 0\n mpls ldp autoconfig\n!\nip forward-protocol nd\nno ip http server\n\
+      ip http secure-server\n!\n!\n!\n!\n!\n!\n!\n!\ncontrol-plane\n!\n!\n!\n!\n!\n\
+      !\nline con 0\n exec-timeout 0 0\n stopbits 1\nline vty 0\n login\n transport\
+      \ input ssh\nline vty 1\n login\n length 0\n transport input ssh\nline vty 2\
+      \ 4\n login\n transport input ssh\n!\ncall-home\n ! If contact email address\
+      \ in call-home is configured as sch-smart-licensing@cisco.com\n ! the email\
+      \ address configured in Cisco Smart License Portal will be used as contact email\
+      \ address to send SCH notifications.\n contact-email-addr sch-smart-licensing@cisco.com\n\
+      \ profile \"CiscoTAC-1\"\n  active\n  destination transport-method http\n!\n\
+      !\n!\n!\n!\nend"
+    hide_links: false
+    ram: 3072
+    cpus: 1
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet1
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet2
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet3
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet4
+        type: physical
+      - id: i5
+        slot: 4
+        label: GigabitEthernet5
+        type: physical
+  - id: n10
+    label: R5
+    node_definition: csr1000v
+    x: 619
+    y: 248
+    configuration: "Building configuration...\n\nCurrent configuration : 6457 bytes\n\
+      !\n! Last configuration change at 23:20:08 UTC Wed Mar 27 2024\n!\nversion 17.3\n\
+      service timestamps debug datetime msec\nservice timestamps log datetime msec\n\
+      service call-home\nplatform qfp utilization monitor load 80\nplatform punt-keepalive\
+      \ disable-kernel-core\nplatform console serial\n!\nhostname R5\n!\nboot-start-marker\n\
+      boot-end-marker\n!\n!\nno logging console\n!\nno aaa new-model\n!\n!\n!\n!\n\
+      !\n!\n!\n!\n!\n!\nlogin on-success log\n!\n!\n!\n!\n!\n!\n!\nsubscriber templating\n\
+      !\n!\n!\n!\n!\n!\nmultilink bundle-name authenticated\nl2vpn vfi context VPLS1\n\
+      \ vpn id 3\n member 4.4.4.4 encapsulation mpls\n member 2.2.2.2 encapsulation\
+      \ mpls\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\ncrypto pki trustpoint\
+      \ SLA-TrustPoint\n enrollment pkcs12\n revocation-check crl\n!\ncrypto pki trustpoint\
+      \ TP-self-signed-2568116301\n enrollment selfsigned\n subject-name cn=IOS-Self-Signed-Certificate-2568116301\n\
+      \ revocation-check none\n rsakeypair TP-self-signed-2568116301\n!\n!\ncrypto\
+      \ pki certificate chain SLA-TrustPoint\n certificate ca 01\n  30820321 30820209\
+      \ A0030201 02020101 300D0609 2A864886 F70D0101 0B050030\n  32310E30 0C060355\
+      \ 040A1305 43697363 6F312030 1E060355 04031317 43697363\n  6F204C69 63656E73\
+      \ 696E6720 526F6F74 20434130 1E170D31 33303533 30313934\n  3834375A 170D3338\
+      \ 30353330 31393438 34375A30 32310E30 0C060355 040A1305\n  43697363 6F312030\
+      \ 1E060355 04031317 43697363 6F204C69 63656E73 696E6720\n  526F6F74 20434130\
+      \ 82012230 0D06092A 864886F7 0D010101 05000382 010F0030\n  82010A02 82010100\
+      \ A6BCBD96 131E05F7 145EA72C 2CD686E6 17222EA1 F1EFF64D\n  CBB4C798 212AA147\
+      \ C655D8D7 9471380D 8711441E 1AAF071A 9CAE6388 8A38E520\n  1C394D78 462EF239\
+      \ C659F715 B98C0A59 5BBB5CBD 0CFEBEA3 700A8BF7 D8F256EE\n  4AA4E80D DB6FD1C9\
+      \ 60B1FD18 FFC69C96 6FA68957 A2617DE7 104FDC5F EA2956AC\n  7390A3EB 2B5436AD\
+      \ C847A2C5 DAB553EB 69A9A535 58E9F3E3 C0BD23CF 58BD7188\n  68E69491 20F320E7\
+      \ 948E71D7 AE3BCC84 F10684C7 4BC8E00F 539BA42B 42C68BB7\n  C7479096 B4CB2D62\
+      \ EA2F505D C7B062A4 6811D95B E8250FC4 5D5D5FB8 8F27D191\n  C55F0D76 61F9A4CD\
+      \ 3D992327 A8BB03BD 4E6D7069 7CBADF8B DF5F4368 95135E44\n  DFC7C6CF 04DD7FD1\
+      \ 02030100 01A34230 40300E06 03551D0F 0101FF04 04030201\n  06300F06 03551D13\
+      \ 0101FF04 05300301 01FF301D 0603551D 0E041604 1449DC85\n  4B3D31E5 1B3E6A17\
+      \ 606AF333 3D3B4C73 E8300D06 092A8648 86F70D01 010B0500\n  03820101 00507F24\
+      \ D3932A66 86025D9F E838AE5C 6D4DF6B0 49631C78 240DA905\n  604EDCDE FF4FED2B\
+      \ 77FC460E CD636FDB DD44681E 3A5673AB 9093D3B1 6C9E3D8B\n  D98987BF E40CBD9E\
+      \ 1AECA0C2 2189BB5C 8FA85686 CD98B646 5575B146 8DFC66A8\n  467A3DF4 4D565700\
+      \ 6ADF0F0D CF835015 3C04FF7C 21E878AC 11BA9CD2 55A9232C\n  7CA7B7E6 C1AF74F6\
+      \ 152E99B7 B1FCF9BB E973DE7F 5BDDEB86 C71E3B49 1765308B\n  5FB0DA06 B92AFE7F\
+      \ 494E8A9E 07B85737 F3A58BE1 1A48A229 C37C1E69 39F08678\n  80DDCD16 D6BACECA\
+      \ EEBC7CF9 8428787B 35202CDC 60E4616A B623CDBD 230E3AFB\n  418616A9 4093E049\
+      \ 4D10AB75 27E86F73 932E35B5 8862FDAE 0275156F 719BB2F0\n  D697DF7F 28\n  \t\
+      quit\ncrypto pki certificate chain TP-self-signed-2568116301\n certificate self-signed\
+      \ 01\n  30820330 30820218 A0030201 02020101 300D0609 2A864886 F70D0101 05050030\n\
+      \  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274\n\
+      \  69666963 6174652D 32353638 31313633 3031301E 170D3234 30333137 32333337\n\
+      \  31305A17 0D333430 33313732 33333731 305A3031 312F302D 06035504 03132649\n\
+      \  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D32 35363831\n\
+      \  31363330 31308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201\n\
+      \  0A028201 0100CBDC EA7793DB FF6E6D81 FF437134 304394B4 BEA3E996 3B0FF242\n\
+      \  019C3ECC 9BCAA1B8 ECE6B72A 57900F1F C6EA67EE AB5AE079 2F5CD4A9 C6B7FB22\n\
+      \  EE013FE0 3DFCC89A 25DFF316 D72B69B4 7D6534D5 EF3C6701 CC052E65 5047760F\n\
+      \  3C8D8082 B0B1723B 1E3885CF BE65426C 9C5460B5 A92BE00F 376A8200 4E30DE7C\n\
+      \  5DCE8EF5 059E9D19 DC539DB4 6141680B D3CFE483 41C1FC2C 35048E74 B646E0A6\n\
+      \  8AAE8CBB EBA61F0A 146282AB 24BCF944 2D659948 748611C2 D1BD8587 F11B82C7\n\
+      \  8517C303 4AA8F343 6EA91299 7E8F20BF B83A1C19 21477665 33141547 5AA19E5D\n\
+      \  14F9CE07 F38CC286 8DFC1C51 8CFAF05F 533E38E0 0A9ABF48 4227AA2B 957F17D9\n\
+      \  E1A8C0B2 F04D0203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF\n\
+      \  301F0603 551D2304 18301680 144B20A5 006D3E46 4B0BE9EE CADAA6A5 62D71205\n\
+      \  08301D06 03551D0E 04160414 4B20A500 6D3E464B 0BE9EECA DAA6A562 D7120508\n\
+      \  300D0609 2A864886 F70D0101 05050003 82010100 317985C2 398112D1 ED26651B\n\
+      \  0D4E1588 5EEAF5B3 23932DEE 6B2FB151 121403D7 7BBF3E19 734F324F 2C87DFB1\n\
+      \  2932253B 662EFBC5 7DA158CD AD300636 FCC651AA 7D50B225 B47464FA 4A30B1F6\n\
+      \  72A9984A D3756190 C8ECBA3A 92B1D9DF E443BF59 A1D64934 A950755B 78DB5BD3\n\
+      \  CBB97411 8377B4B2 A9769FA6 600292D9 9AEF9709 0E387DAA 8530AA25 B8AEA594\n\
+      \  D309DB78 FB45897C 2A4789BD 0F91F789 22E9D58E 5EBA59BA FAC89349 CCF90D8B\n\
+      \  412E6DD0 33663D8E A746BC4F 0C2FC0B0 E358C99A FA83971E 551638BA 5E932652\n\
+      \  BFD85E3C 5FD7FEE6 68F5D877 32A30D5F 946F9545 C119773D B339A2AB 2EB0B481\n\
+      \  F88C0F23 E2123E7E 630B7801 5A5E04BE E4F8C833\n  \tquit\n!\nlicense udi pid\
+      \ CSR1000V sn 9JY5YYNBBME\ndiagnostic bootup level minimal\nmemory free low-watermark\
+      \ processor 71489\n!\n!\nspanning-tree extend system-id\n!\n!\nredundancy\n\
+      !\nbridge-domain 2\n member GigabitEthernet3 service-instance 1\n member vfi\
+      \ VPLS1\n!\n!\n!\n!\n!\n!\ncdp run\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n\
+      !\n!\n!\n!\n!\n!\ninterface Loopback0\n ip address 5.5.5.5 255.255.255.255\n\
+      !\ninterface GigabitEthernet1\n ip address 20.5.6.5 255.255.255.0\n negotiation\
+      \ auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet2\n ip address\
+      \ 20.4.5.5 255.255.255.0\n negotiation auto\n no mop enabled\n no mop sysid\n\
+      !\ninterface GigabitEthernet3\n no ip address\n negotiation auto\n cdp enable\n\
+      \ no mop enabled\n no mop sysid\n service instance 1 ethernet\n  encapsulation\
+      \ default\n !\n!\ninterface GigabitEthernet4\n ip address 20.5.19.5 255.255.255.0\n\
+      \ negotiation auto\n no mop enabled\n no mop sysid\n!\nrouter ospf 1\n network\
+      \ 0.0.0.0 255.255.255.255 area 0\n mpls ldp autoconfig\n!\nip forward-protocol\
+      \ nd\nno ip http server\nip http secure-server\n!\n!\n!\n!\n!\n!\n!\n!\ncontrol-plane\n\
+      !\n!\n!\n!\n!\n!\nline con 0\n exec-timeout 0 0\n stopbits 1\nline vty 0\n login\n\
+      \ transport input ssh\nline vty 1\n login\n length 0\n transport input ssh\n\
+      line vty 2 4\n login\n transport input ssh\n!\ncall-home\n ! If contact email\
+      \ address in call-home is configured as sch-smart-licensing@cisco.com\n ! the\
+      \ email address configured in Cisco Smart License Portal will be used as contact\
+      \ email address to send SCH notifications.\n contact-email-addr sch-smart-licensing@cisco.com\n\
+      \ profile \"CiscoTAC-1\"\n  active\n  destination transport-method http\n!\n\
+      !\n!\n!\n!\nend"
+    hide_links: false
+    ram: 3072
+    cpus: 1
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet1
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet2
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet3
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet4
+        type: physical
+links:
+  - id: l0
+    i1: i1
+    n1: n0
+    i2: i1
+    n2: n1
+    label: R3-GigabitEthernet0/0<->R6-GigabitEthernet0/0
+  - id: l1
+    i1: i4
+    n1: n4
+    i2: i4
+    n2: n1
+    label: XR1-GigabitEthernet0/0/0/0<->R6-GigabitEthernet0/3
+  - id: l2
+    i1: i4
+    n1: n5
+    i2: i6
+    n2: n4
+    label: XR2-GigabitEthernet0/0/0/0<->XR1-GigabitEthernet0/0/0/2
+  - id: l3
+    i1: i1
+    n1: n6
+    i2: i3
+    n2: n0
+    label: R2-GigabitEthernet1<->R3-GigabitEthernet0/2
+  - id: l4
+    i1: i1
+    n1: n7
+    i2: i3
+    n2: n6
+    label: R1-GigabitEthernet0/0<->R2-GigabitEthernet3
+  - id: l5
+    i1: i1
+    n1: n8
+    i2: i4
+    n2: n6
+    label: R9-GigabitEthernet0/0<->R2-GigabitEthernet4
+  - id: l6
+    i1: i2
+    n1: n6
+    i2: i1
+    n2: n9
+    label: R2-GigabitEthernet2<->R4-GigabitEthernet1
+  - id: l7
+    i1: i2
+    n1: n0
+    i2: i2
+    n2: n9
+    label: R3-GigabitEthernet0/1<->R4-GigabitEthernet2
+  - id: l8
+    i1: i3
+    n1: n9
+    i2: i3
+    n2: n1
+    label: R4-GigabitEthernet3<->R6-GigabitEthernet0/2
+  - id: l9
+    i1: i1
+    n1: n10
+    i2: i2
+    n2: n1
+    label: R5-GigabitEthernet1<->R6-GigabitEthernet0/1
+  - id: l10
+    i1: i2
+    n1: n10
+    i2: i4
+    n2: n9
+    label: R5-GigabitEthernet2<->R4-GigabitEthernet4
+  - id: l11
+    i1: i5
+    n1: n9
+    i2: i1
+    n2: n2
+    label: R4-GigabitEthernet5<->R7-GigabitEthernet0/0
+  - id: l12
+    i1: i3
+    n1: n10
+    i2: i1
+    n2: n3
+    label: R5-GigabitEthernet3<->R8-GigabitEthernet0/0
+  - id: l13
+    i1: i4
+    n1: n10
+    i2: i5
+    n2: n4
+    label: R5-GigabitEthernet4<->XR1-GigabitEthernet0/0/0/1
